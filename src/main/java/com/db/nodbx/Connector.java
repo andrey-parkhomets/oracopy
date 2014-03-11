@@ -29,7 +29,7 @@ public class Connector {
             throw ex;
         }
         // oracle.net.tns_admin should be set as System property only!!!
-        //System.setProperty("oracle.net.tns_admin","E:\\app\\aparhomets\\product\\11.2.0\\client_1\\network\\admin\\wallet");
+        //System.setProperty("oracle.net.tns_admin","E:\\app\\%USERNAME%\\product\\11.2.0\\client_1\\network\\admin\\wallet");
         //props.setProperty("oracle.net.wallet_location","(SOURCE=(METHOD=file)(METHOD_DATA=(DIRECTORY=" +
         //        "E:\\app\\%USERNAME%\\product\\11.2.0\\client_1\\network\\admin\\wallet)))");
         //System.setProperty("oracle.net.tns_admin",props.getProperty("oracle.net.wallet_location"));

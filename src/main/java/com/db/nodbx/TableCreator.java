@@ -3,13 +3,6 @@ package com.db.nodbx;
 import java.sql.*;
 import java.io.File;
 
-/**
- * Created with IntelliJ IDEA.
- * User: aparhomets
- * Date: 17/12/13
- * Time: 18:15
- * To change this template use File | Settings | File Templates.
- */
 public class TableCreator {
     public void createDbUserTable(Connection conn, String table) throws SQLException {
 

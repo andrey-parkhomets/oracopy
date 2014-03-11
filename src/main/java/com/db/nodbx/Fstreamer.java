@@ -96,27 +96,4 @@ public class Fstreamer {
         }
     }
 
-    public void write2File(Connection conn, File file) {
-        try {
-            if (!file.exists()) {
-                file.createNewFile();
-            }
-            FileInputStream fis = new FileInputStream(file);
-            PreparedStatement pstmt = conn.prepareStatement("select  file_data_blob  from FILE_LOAD where file_name=? and rownum < 2");
-            pstmt.setString(1, file.getName());
-            ResultSet rs = pstmt.executeQuery();
-            if (rs.next()) {
-                Blob blob = rs.getBlob("file_data_blob");
-                InputStream in = blob.getBinaryStream();
-                OutputStream out = new FileOutputStream(file);
-                byte[] buff = blob.getBytes(1, (int) blob.length());
-                out.write(buff);
-                out.close();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 }
