@@ -1,4 +1,4 @@
-package com.db.nodbx;
+package com.home.oracopy;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

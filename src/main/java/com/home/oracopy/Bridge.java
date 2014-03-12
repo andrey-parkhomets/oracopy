@@ -1,9 +1,8 @@
-package com.db.nodbx;
+package com.home.oracopy;
 
 import java.io.*;
 import java.sql.*;
 import java.util.*;
-import java.io.File.*;
 
 public class Bridge {
     public static final String upload_txt = "upload";

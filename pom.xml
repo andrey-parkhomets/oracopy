@@ -6,9 +6,9 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    <groupId>com.db.nodbx</groupId>
-    <artifactId>nodbx</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <groupId>com.home.oracopy</groupId>
+    <artifactId>oracopy</artifactId>
+    <version>0.1</version>
     <dependencies>
         <dependency>
             <groupId>com.oracle</groupId>
@@ -58,7 +58,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.db.nodbx.Bridge</mainClass>
+                            <mainClass>com.home.oracopy.Bridge</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>

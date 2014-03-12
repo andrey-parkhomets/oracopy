@@ -1,7 +1,6 @@
-package com.db.nodbx;
+package com.home.oracopy;
 
 import java.sql.*;
-import java.io.File;
 
 public class TableCreator {
     public void createDbUserTable(Connection conn, String table) throws SQLException {
