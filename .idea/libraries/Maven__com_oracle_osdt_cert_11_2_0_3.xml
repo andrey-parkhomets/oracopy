@@ -3,11 +3,7 @@
     <CLASSES>
       <root url="jar://$MAVEN_REPOSITORY$/com/oracle/osdt_cert/11.2.0.3/osdt_cert-11.2.0.3.jar!/" />
     </CLASSES>
-    <JAVADOC>
-      <root url="jar://$MAVEN_REPOSITORY$/com/oracle/osdt_cert/11.2.0.3/osdt_cert-11.2.0.3-javadoc.jar!/" />
-    </JAVADOC>
-    <SOURCES>
-      <root url="jar://$MAVEN_REPOSITORY$/com/oracle/osdt_cert/11.2.0.3/osdt_cert-11.2.0.3-sources.jar!/" />
-    </SOURCES>
+    <JAVADOC />
+    <SOURCES />
   </library>
 </component>
