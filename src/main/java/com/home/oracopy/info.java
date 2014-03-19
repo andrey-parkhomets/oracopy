@@ -15,7 +15,7 @@ public class info {
         System.out.println(" -tns <tns_alias> \\");
         System.out.println(" -table <TABLE_NAME> \\");
         System.out.println(" -key_val <FILE_TAG> \\");
-        System.out.println(" -a <upload|create_upload|download> \\");
+        System.out.println(" -a <upload|create_upload_txt|download> \\");
         System.out.println();
         System.out.println("  -h\t\tPrints the usage message");
         System.out.println("  -f \t\t File used as source\\destination of blob");
