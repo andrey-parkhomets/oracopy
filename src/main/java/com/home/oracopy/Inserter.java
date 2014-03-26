@@ -96,16 +96,16 @@ public class Inserter {
 
 
  //jdbc6 for java 1.6
-    public void doInsert_jdbc6(Connection conn, File file, String table, String clobFieldName, String keyFieldName, String keyFieldValue) {
+    public void doInsert_jdbc6(ParamHolder myParamHolder) {
         try {
-            PreparedStatement pstmt = conn.prepareStatement("insert into "+table.toUpperCase()+"( file_name, "+clobFieldName.toUpperCase()+", file_tag) values ( ? ,? , ?)");
+            PreparedStatement pstmt = myParamHolder.conn.prepareStatement("insert into "+myParamHolder.table.toUpperCase()+"( file_name, "+myParamHolder.clobFieldName.toUpperCase()+", file_tag) values ( ? ,? , ?)");
 
-            pstmt.setString(1, file.getName());
-            pstmt.setString(3, keyFieldValue);
+            pstmt.setString(1, myParamHolder.file.getName());
+            pstmt.setString(3, myParamHolder.keyFieldValue);
 
             //BLOB myblob = null;
           ////!  BLOB myblob = (BLOB) conn.createBlob();
-            BLOB myblob = BLOB.createTemporary(conn, false, BLOB.DURATION_SESSION);
+            BLOB myblob = BLOB.createTemporary(myParamHolder.conn, false, BLOB.DURATION_SESSION);
             int bufSize = myblob.getBufferSize();
             OutputStream blobOutputStream = null;
             InputStream buffIn = null;
@@ -113,11 +113,11 @@ public class Inserter {
 
             try {
                 blobOutputStream = myblob.setBinaryStream(1);
-                inputFileInputStream    = new FileInputStream(file);
+                inputFileInputStream    = new FileInputStream(myParamHolder.file);
                 buffIn = new BufferedInputStream( inputFileInputStream, bufSize);
                 byte[] buffer = new byte[bufSize];
                 long filebytesize = 0;
-                filebytesize =  file.length();
+                filebytesize =  myParamHolder.file.length();
                 System.out.println(" the filebytesize ="+ filebytesize);
                 int length = -1;
                 //int cnt  = 0;
@@ -147,10 +147,10 @@ public class Inserter {
             pstmt.setBlob(2, myblob);
             pstmt.executeUpdate();
             System.out.println("insert into file_load of file_name="
-                    + file.getName() + ", is ok");
+                    + myParamHolder.file.getName() + ", is ok");
             inputFileInputStream.close();
             blobOutputStream.close();
-            conn.commit();
+            myParamHolder.conn.commit();
             buffIn.close();
             pstmt.close();
 

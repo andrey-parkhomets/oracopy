@@ -7,18 +7,19 @@ import java.io.IOException;
 import java.sql.*;
 
 public class Fstreamer {
-    public void doFile(Connection conn, File file, String table, String blobField, String keyField, String keyValue) {
+    public void doFile(ParamHolder myParamHolder//Connection conn, File file, String table, String blobField, String keyField, String keyValue
+                        ) {
         try {    //File MyFile = new File(file.getPath() + file.getName());
-            if (!file.exists()) {
-                file.createNewFile() ;
+            if (!myParamHolder.file.exists()) {
+                myParamHolder.file.createNewFile() ;
             }
 
 
             String colType = null;
-            PreparedStatement pstmt0 = conn.prepareStatement("select     max(x.DATA_TYPE) as DATA_TYPE    from user_tab_columns x where x.TABLE_NAME = ? and x.COLUMN_NAME = ? ");
+            PreparedStatement pstmt0 = myParamHolder.conn.prepareStatement("select     max(x.DATA_TYPE) as DATA_TYPE    from user_tab_columns x where x.TABLE_NAME = ? and x.COLUMN_NAME = ? ");
 
-            pstmt0.setString(1, table.toUpperCase());
-            pstmt0.setString(2, blobField.toUpperCase());
+            pstmt0.setString(1, myParamHolder.table.toUpperCase());
+            pstmt0.setString(2, myParamHolder.clobFieldName.toUpperCase());
 
             ResultSet rs0 = pstmt0.executeQuery();
 
@@ -26,20 +27,20 @@ public class Fstreamer {
                 colType = rs0.getString("DATA_TYPE");
 
                 if (colType == null || colType.length() == 0) {
-                    System.out.print("========== Error: can't identify datatype for " + table.toUpperCase() + "."+blobField.toUpperCase()+" ! Object\\attribute not exist for this connection ?");
+                    System.out.print("========== Error: can't identify datatype for " + myParamHolder.table.toUpperCase() + "."+myParamHolder.clobFieldName.toUpperCase()+" ! Object\\attribute not exist for this connection ?");
                     System.exit(-1);
                 }
             }
 
-            FileInputStream fis = new FileInputStream(file);
-            PreparedStatement pstmt = conn.prepareStatement("select  " + blobField.toUpperCase() + "  from " + table.toUpperCase() + " where " + keyField + "=? and rownum < 2");
-            pstmt.setString(1, keyValue);
+            FileInputStream fis = new FileInputStream(myParamHolder.file);
+            PreparedStatement pstmt = myParamHolder.conn.prepareStatement("select  " + myParamHolder.clobFieldName.toUpperCase() + "  from " + myParamHolder.table.toUpperCase() + " where " + myParamHolder.keyFieldName + "=? and rownum < 2");
+            pstmt.setString(1, myParamHolder.keyFieldValue);
             ResultSet rs = pstmt.executeQuery();
             long filebytesize = 0;
             int bufSize = 1024;
             if (rs.next()) {
                 if (colType.equals("BLOB")) {
-                    Blob blob = rs.getBlob(blobField);
+                    Blob blob = rs.getBlob(myParamHolder.clobFieldName);
                     filebytesize = blob.length();
                     if   (filebytesize == 0L ){
                         System.out.println(" ================================");
@@ -49,7 +50,7 @@ public class Fstreamer {
                     System.out.println(" the ETA File size byte = " + filebytesize);
                     InputStream blobInputStream = null;
                     blobInputStream = blob.getBinaryStream();
-                    FileOutputStream out = new FileOutputStream(file);
+                    FileOutputStream out = new FileOutputStream(myParamHolder.file);
                     BufferedOutputStream bos = new BufferedOutputStream(out);
                     long bytedone = 0;
                     byte[] buffer = new byte[bufSize];
@@ -67,12 +68,12 @@ public class Fstreamer {
                     bos.flush();
                     bos.close();
                 } else if (colType.equals("CLOB")) {
-                    Clob clob = rs.getClob(blobField);
+                    Clob clob = rs.getClob(myParamHolder.clobFieldName);
                     filebytesize = clob.length();
                     System.out.println(" the ETA File size byte = " + filebytesize);
                     InputStream clobInputStream = null;
                     clobInputStream = clob.getAsciiStream();
-                    FileOutputStream out = new FileOutputStream(file);
+                    FileOutputStream out = new FileOutputStream(myParamHolder.file);
                     BufferedOutputStream bos = new BufferedOutputStream(out);
                     long bytedone = 0;
                     byte[] buffer = new byte[bufSize];

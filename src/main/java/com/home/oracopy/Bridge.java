@@ -1,5 +1,7 @@
 package com.home.oracopy;
 
+import org.omg.CORBA.ParameterModeHolder;
+
 import java.io.*;
 import java.sql.*;
 import java.util.*;
@@ -45,6 +47,7 @@ public class Bridge {
             info.printUsage("must be "+upload_txt+" or "+upload_txt+" or "+create_upload_txt+" or "+ls_txt+" ");
         }
         Connection conn = null;
+
         try {
             conn = myConnector.getMyConn(tnsAlias, oraUser, oraPwd);
         } catch (MyException ex) {
@@ -55,20 +58,21 @@ public class Bridge {
             }
             */
         }
+        ParamHolder myParamHolder = new  ParamHolder(conn, file,tabName, lobFieldName, keyFieldName, keyFieldValue);
         if (myAction.equals(create_upload_txt)) {
             TableCreator mytabCreator = new TableCreator();
             mytabCreator.createDbUserTable(conn, tabName);
             Inserter myInserter = new Inserter();
-            myInserter.doInsert_jdbc6(conn, file,tabName, lobFieldName, keyFieldName, keyFieldValue);
+            myInserter.doInsert_jdbc6(myParamHolder);
         } else if (myAction.equals(upload_txt)) {
             Inserter myInserter = new Inserter();
-            myInserter.doInsert_jdbc6(conn, file,tabName, lobFieldName, keyFieldName, keyFieldValue);
+            myInserter.doInsert_jdbc6(myParamHolder);
         } else if (myAction.equals(download_txt)) {
             Fstreamer MyFstreamer = new Fstreamer();
-            MyFstreamer.doFile(conn, file, tabName, lobFieldName, keyFieldName, keyFieldValue);
+            MyFstreamer.doFile(myParamHolder);
         } else if (myAction.equals(ls_txt)) {
             list Mylist = new list();
-            Mylist.do_ls(conn, file, tabName, lobFieldName, keyFieldName, keyFieldValue);
+            Mylist.do_ls(myParamHolder);
         }
     }
 }
