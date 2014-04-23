@@ -11,6 +11,9 @@ public class ArgReader {
     public static final String[] h_strs = new String[]{"-h", "--h", "--help", "-help"};
 
     public Map<String, String> spaceParser(String[] argv) {
+        if( argv.length == 0){
+            info.printUsage("");
+        }
         Map<String, String> map = new HashMap<String, String>();
         // String[] entry;
         int i = 0;
@@ -29,7 +32,7 @@ public class ArgReader {
                 if (minus_txt.equals(argv[i].substring(0, 1))) {
                     myParam = argv[i].toLowerCase();
                 } else {
-                    info.printUsage("Param " + argv[i].toString() + "is wrong");
+                    info.printUsage("Param " + argv[i].toString() + " is wrong !!!!");
                     //System.exit(1);
                 }
             } else {
@@ -37,7 +40,7 @@ public class ArgReader {
             }
             if (myValue != null) {
                 if ((myValue.length() == 0) && ((i % 2) != 0)) {
-                    info.printUsage("parameter " + myParam + " value must be set");
+                    info.printUsage("parameter " + myParam + " value must be set !!!!");
                 } else {
                     map.put(myParam, myValue);
                     myValue = null;

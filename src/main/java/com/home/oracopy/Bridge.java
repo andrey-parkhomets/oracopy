@@ -1,6 +1,6 @@
 package com.home.oracopy;
 
-import org.omg.CORBA.ParameterModeHolder;
+
 
 import java.io.*;
 import java.sql.*;
@@ -22,18 +22,28 @@ public class Bridge {
         Connector myConnector = new Connector();
         ArgReader myArgRead = new ArgReader();
         Map<String, String> inputArgumentMap = myArgRead.spaceParser(args);
-        String fileName = inputArgumentMap.get("-f");
-        File file = new File(fileName);
+        String fileName = NVL(inputArgumentMap.get("-f"),"");
         //Properties props = new Properties();
         String tnsAlias = inputArgumentMap.get("-tns");
+
         String myAction = inputArgumentMap.get("-a");
+        if ( tnsAlias == null ||  tnsAlias.isEmpty() || (fileName == null ) || fileName.isEmpty())
+        {
+           if (!myAction.equals("ls")) {
+               info.printUsage("-");
+           }
+        }
         //optional if wallet used
         String oraUser = NVL(inputArgumentMap.get("-u"), "");
         String oraPwd = NVL(inputArgumentMap.get("-p"), "");
         String tabName = NVL(inputArgumentMap.get("-table"), "FILE_LOAD");
         String lobFieldName = NVL(inputArgumentMap.get("-blob_field"), "FILE_DATA_BLOB");
         String keyFieldName = NVL(inputArgumentMap.get("-key_field"), "FILE_TAG");
-        String keyFieldValue  = NVL(inputArgumentMap.get("-key_val"), file.getName());
+
+              File file = new File(fileName);
+              String keyFieldValue  = NVL(inputArgumentMap.get("-key_val"), fileName);
+
+
         if  (    !myAction.equals(upload_txt)
               && !myAction.equals(download_txt)
               && !myAction.equals(create_upload_txt)
@@ -45,7 +55,9 @@ public class Bridge {
             System.out.println("===========");
 
             info.printUsage("must be "+upload_txt+" or "+upload_txt+" or "+create_upload_txt+" or "+ls_txt+" ");
+
         }
+
         Connection conn = null;
 
         try {
