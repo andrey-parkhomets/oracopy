@@ -39,6 +39,8 @@ public class Bridge {
         String tabName = NVL(inputArgumentMap.get("-table"), "FILE_LOAD");
         String lobFieldName = NVL(inputArgumentMap.get("-blob_field"), "FILE_DATA_BLOB");
         String keyFieldName = NVL(inputArgumentMap.get("-key_field"), "FILE_TAG");
+      // System.out.println("oraUser="+oraUser);
+      // System.out.println("oraPwd="+oraPwd);
 
               File file = new File(fileName);
               String keyFieldValue  = NVL(inputArgumentMap.get("-key_val"), fileName);

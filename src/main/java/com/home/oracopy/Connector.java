@@ -33,15 +33,20 @@ public class Connector {
         String j$oracle_net_tns_admin= System.getProperty("oracle.net.tns_admin");
         String j$oracle_net_wallet_location= System.getProperty("oracle.net.wallet_location");
         System.out.println("$ORACLE_HOME="+os$ORACLE_HOME);
-        System.out.println("$TNS_ADMIN"+os$TNS_ADMIN);
+        System.out.println("$TNS_ADMIN="+os$TNS_ADMIN);
         System.out.println("-Doracle.net.tns.admin="+j$oracle_net_tns_admin);
         System.out.println("-Doracle.net.wallet.location="+j$oracle_net_wallet_location);
         if ( j$oracle_net_tns_admin == null ) {
                if (os$TNS_ADMIN == null) {
-                   if (os$ORACLE_HOME==null)  {
+                   if (os$ORACLE_HOME == null)  {
                        System.out.println("=========================================================================================");
                        System.out.println("Please set java param -Doracle.net.tns_admin or env variables ORACLE_HOME/TNS_ADMIN");
                        System.out.println("=========================================================================================");
+                       if   ( j$oracle_net_wallet_location == null &&  (user == null || user.length() == 0) && (pwd == null || pwd.length() == 0)) {
+                           System.out.println("=========================================================================================");
+                           System.out.println("Please set java param -Doracle.net.wallet_location or env variables ORACLE_HOME/TNS_ADMIN");
+                           System.out.println("=========================================================================================");
+                       }
                        System.exit(-1);
                    } else { j$oracle_net_tns_admin = os$ORACLE_HOME+"\\network\\admin";
                            System.setProperty("oracle.net.tns_admin",j$oracle_net_tns_admin);
@@ -56,7 +61,7 @@ public class Connector {
                            System.setProperty("oracle.net.tns_admin",j$oracle_net_tns_admin);
                            System.out.println("by using $TNS_ADMIN: -Doracle.net.tns.admin="+j$oracle_net_tns_admin);
                    if ( j$oracle_net_wallet_location == null ) {
-                       j$oracle_net_wallet_location = os$TNS_ADMIN+"\\wallet";
+                       j$oracle_net_wallet_location = "(SOURCE=(METHOD=file)(METHOD_DATA=(DIRECTORY=" +os$TNS_ADMIN+"\\wallet";
                        System.setProperty("oracle.net.wallet_location",j$oracle_net_wallet_location);
                        System.out.println("by using $TNS_ADMIN: -Doracle.net.wallet_location="+j$oracle_net_wallet_location);
                    }
