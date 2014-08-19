@@ -27,7 +27,7 @@ public class Bridge {
         String tnsAlias = inputArgumentMap.get("-tns");
 
         String myAction = inputArgumentMap.get("-a");
-        if ( tnsAlias == null ||  tnsAlias.isEmpty() || (fileName == null ) || fileName.isEmpty())
+        if ( tnsAlias == null ||  tnsAlias.length() == 0 || (fileName == null ) || fileName.length() == 0)
         {
            if (!myAction.equals("ls")) {
                info.printUsage("-");

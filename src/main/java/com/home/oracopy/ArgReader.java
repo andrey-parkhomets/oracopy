@@ -2,13 +2,47 @@ package com.home.oracopy;
 
 
 import java.util.*;
-
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 //import java.math.*;
 
 public class ArgReader {
     public static final String minus_txt = "-";
     public static final String help_txt = "-h";
     public static final String[] h_strs = new String[]{"-h", "--h", "--help", "-help"};
+
+  public Map<String, String> paramsFileReader(String propFile)
+  {
+
+      Properties prop = new Properties();
+      InputStream input = null;
+      Map<String, String> myMap = new HashMap<String, String>();
+      try {
+
+          input = new FileInputStream(propFile);
+
+          // load a properties file
+          prop.load(input);
+
+          myMap.put("database",prop.getProperty("database")) ;
+
+      } catch (IOException ex) {
+          ex.printStackTrace();
+      } finally {
+          if (input != null) {
+              try {
+                  input.close();
+              } catch (IOException e) {
+                  e.printStackTrace();
+              }
+          }
+      }
+
+
+    return myMap;
+  }
 
     public Map<String, String> spaceParser(String[] argv) {
         if( argv.length == 0){
