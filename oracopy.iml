@@ -12,7 +12,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="Maven: com.oracle:ojdbc5:11.2.0.3" level="project" />
+    <orderEntry type="library" name="Maven: com.oracle:ojdbc5:11.2.0.3" level="project" />
     <orderEntry type="library" name="Maven: com.phaos:ojpse:11.2.0.3" level="project" />
     <orderEntry type="library" name="Maven: com.oracle:oraclepki:11.2.0.3" level="project" />
     <orderEntry type="library" name="Maven: com.oracle:osdt_cert:11.2.0.3" level="project" />

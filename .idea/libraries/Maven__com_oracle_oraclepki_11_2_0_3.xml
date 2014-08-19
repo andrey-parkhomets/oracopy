@@ -3,7 +3,11 @@
     <CLASSES>
       <root url="jar://$MAVEN_REPOSITORY$/com/oracle/oraclepki/11.2.0.3/oraclepki-11.2.0.3.jar!/" />
     </CLASSES>
-    <JAVADOC />
-    <SOURCES />
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/oracle/oraclepki/11.2.0.3/oraclepki-11.2.0.3-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/oracle/oraclepki/11.2.0.3/oraclepki-11.2.0.3-sources.jar!/" />
+    </SOURCES>
   </library>
 </component>
