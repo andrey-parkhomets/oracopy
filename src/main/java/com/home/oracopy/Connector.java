@@ -46,13 +46,22 @@ public class Connector {
                    } else { j$oracle_net_tns_admin = os$ORACLE_HOME+"\\network\\admin";
                            System.setProperty("oracle.net.tns_admin",j$oracle_net_tns_admin);
                            System.out.println("by using $ORACLE_HOME: -Doracle.net.tns.admin="+j$oracle_net_tns_admin);
+                       if (j$oracle_net_wallet_location == null) {
+                           j$oracle_net_wallet_location = os$ORACLE_HOME+"\\network\\admin\\wallet";
+                           System.setProperty("oracle.net.wallet_location",j$oracle_net_wallet_location);
+                           System.out.println("by using $ORACLE_HOME: -Doracle.net.wallet_location="+j$oracle_net_wallet_location);
+                       }
                     }
                } else {    j$oracle_net_tns_admin =  os$TNS_ADMIN;
                            System.setProperty("oracle.net.tns_admin",j$oracle_net_tns_admin);
                            System.out.println("by using $TNS_ADMIN: -Doracle.net.tns.admin="+j$oracle_net_tns_admin);
+                   if ( j$oracle_net_wallet_location == null ) {
+                       j$oracle_net_wallet_location = os$TNS_ADMIN+"\\wallet";
+                       System.setProperty("oracle.net.wallet_location",j$oracle_net_wallet_location);
+                       System.out.println("by using $TNS_ADMIN: -Doracle.net.wallet_location="+j$oracle_net_wallet_location);
+                   }
                }
         }
-
         //System.getenv("ORACLE_HOME");
         //System.getProperty("oracle.net.tns_admin");
        // System.getProperty("oracle.net.wallet_location");
