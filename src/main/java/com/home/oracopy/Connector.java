@@ -67,7 +67,6 @@ public class Connector {
                    }
                }
         }
-        //System.getenv("ORACLE_HOME");
         //System.getProperty("oracle.net.tns_admin");
        // System.getProperty("oracle.net.wallet_location");
         // oracle.net.tns_admin should be set as System property only!!!
