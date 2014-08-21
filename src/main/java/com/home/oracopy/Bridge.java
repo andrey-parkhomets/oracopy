@@ -11,6 +11,7 @@ public class Bridge {
     public static final String download_txt = "download";
     public static final String create_upload_txt = "create_upload";
     public static final String ls_txt = "ls";
+    public static final String cleanup_txt = "cleanup";
 
 
     public static String NVL(String input1,String input2) {
@@ -29,9 +30,13 @@ public class Bridge {
         String myAction = inputArgumentMap.get("-a");
         if ( tnsAlias == null ||  tnsAlias.length() == 0 || (fileName == null ) || fileName.length() == 0)
         {
-           if (!myAction.equals("ls")) {
-               info.printUsage("-");
-           }
+          if (!myAction.equals(cleanup_txt)) {
+
+              if (!myAction.equals(ls_txt)) {
+                  info.printUsage("Error: incorrect param combination");
+              }
+          }
+
         }
         //optional if wallet used
         String oraUser = NVL(inputArgumentMap.get("-u"), "");
@@ -48,7 +53,7 @@ public class Bridge {
 
         if  (    !myAction.equals(upload_txt)
               && !myAction.equals(download_txt)
-              && !myAction.equals(create_upload_txt)
+              && !myAction.equals(cleanup_txt)
               && !myAction.equals(create_upload_txt)
               && !myAction.equals(ls_txt)
                 )  {
@@ -74,11 +79,15 @@ public class Bridge {
         }
         ParamHolder myParamHolder = new  ParamHolder(conn, file,tabName, lobFieldName, keyFieldName, keyFieldValue);
         if (myAction.equals(create_upload_txt)) {
-            TableCreator mytabCreator = new TableCreator();
-            mytabCreator.createDbUserTable(conn, tabName);
+            TableActor mytabCreator = new TableActor();
+            mytabCreator.createTable(conn, tabName);
             Inserter myInserter = new Inserter();
             myInserter.doInsert_jdbc6(myParamHolder);
-        } else if (myAction.equals(upload_txt)) {
+        } else if (myAction.equals(cleanup_txt))  {
+           TableActor mytabClean = new TableActor();
+            mytabClean.cleanTable(conn,tabName,keyFieldName,keyFieldValue);
+        }
+        else if (myAction.equals(upload_txt)) {
             Inserter myInserter = new Inserter();
             myInserter.doInsert_jdbc6(myParamHolder);
         } else if (myAction.equals(download_txt)) {

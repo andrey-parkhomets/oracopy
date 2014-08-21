@@ -20,14 +20,14 @@ public class info {
         System.out.println(" -table <TABLE_NAME> \\  ");
         System.out.println(" [ -key_val <FILE_TAG> ] \\ ");
         System.out.println(" [ -key_field <FILE_TAG_FIELD> ]");
-        System.out.println(" -a <upload|create_upload_txt|download|ls> \\ ");
+        System.out.println(" -a <upload|create_upload_txt|download|ls|cleanup> \\ ");
         System.out.println(" [ -u <SCHEMA_NAME> ] ");
         System.out.println(" [ -p <SCHEMA_PWD> ] ");
         System.out.println(" [ -blob_field <BLOB_FILED> ]");
         System.out.println();
         System.out.println("  -h\t\tPrints the usage message");
         System.out.println("  -f \t\t File used as source\\destination of blob");
-        System.out.println("  -tns \t\t The tns alias of $TNS_ADMIN/tnsnames.ora registred in Oracle Wallet");
+        System.out.println("  -tns \t\t The tns alias of $TNS_ADMIN/tnsnames.ora (can be associated with Oracle Wallet via sqlnet.ora for passwordless access");
         System.out.println();
         System.out.println("----------------------------------------------------------------------------------------------");
         System.out.println();

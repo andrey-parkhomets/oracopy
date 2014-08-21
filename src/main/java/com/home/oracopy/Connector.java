@@ -48,11 +48,11 @@ public class Connector {
                            System.out.println("=========================================================================================");
                        }
                        System.exit(-1);
-                   } else { j$oracle_net_tns_admin = os$ORACLE_HOME+"\\network\\admin";
+                   } else { j$oracle_net_tns_admin = os$ORACLE_HOME+"/network/admin";
                            System.setProperty("oracle.net.tns_admin",j$oracle_net_tns_admin);
                            System.out.println("by using $ORACLE_HOME: -Doracle.net.tns.admin="+j$oracle_net_tns_admin);
                        if (j$oracle_net_wallet_location == null) {
-                           j$oracle_net_wallet_location = os$ORACLE_HOME+"\\network\\admin\\wallet";
+                           j$oracle_net_wallet_location = os$ORACLE_HOME+"/network/admin/wallet";
                            System.setProperty("oracle.net.wallet_location",j$oracle_net_wallet_location);
                            System.out.println("by using $ORACLE_HOME: -Doracle.net.wallet_location="+j$oracle_net_wallet_location);
                        }
@@ -61,7 +61,8 @@ public class Connector {
                            System.setProperty("oracle.net.tns_admin",j$oracle_net_tns_admin);
                            System.out.println("by using $TNS_ADMIN: -Doracle.net.tns.admin="+j$oracle_net_tns_admin);
                    if ( j$oracle_net_wallet_location == null ) {
-                       j$oracle_net_wallet_location = "(SOURCE=(METHOD=file)(METHOD_DATA=(DIRECTORY=" +os$TNS_ADMIN+"\\wallet";
+                       String X = "(SOURCE=(METHOD=file)(METHOD_DATA=(DIRECTORY=";
+                       j$oracle_net_wallet_location =  os$TNS_ADMIN+"/wallet";
                        System.setProperty("oracle.net.wallet_location",j$oracle_net_wallet_location);
                        System.out.println("by using $TNS_ADMIN: -Doracle.net.wallet_location="+j$oracle_net_wallet_location);
                    }
@@ -70,9 +71,9 @@ public class Connector {
         //System.getProperty("oracle.net.tns_admin");
        // System.getProperty("oracle.net.wallet_location");
         // oracle.net.tns_admin should be set as System property only!!!
-        //System.setProperty("oracle.net.tns_admin","E:\\app\\%USERNAME%\\product\\11.2.0\\client_1\\network\\admin\\wallet");
+        //System.setProperty("oracle.net.tns_admin","E:/app/%USERNAME%/product/11.2.0/client_1/network/admin/wallet");
         //props.setProperty("oracle.net.wallet_location","(SOURCE=(METHOD=file)(METHOD_DATA=(DIRECTORY=" +
-        //        "E:\\app\\%USERNAME%\\product\\11.2.0\\client_1\\network\\admin\\wallet)))");
+        //        "E:/app/%USERNAME%/product/11.2.0/client_1/network/admin/wallet)))");
         //System.setProperty("oracle.net.tns_admin",props.getProperty("oracle.net.wallet_location"));
         String url = "jdbc:oracle:thin:"+user+"/"+pwd+"@"+ tns;
         //String url = "jdbc:oracle:thin:/@"+ tns;
