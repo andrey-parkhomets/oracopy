@@ -8,15 +8,13 @@ import java.util.Properties;
 public class Connector {
 
 
-    public Connection getMyConn(String tns, String user, String pwd) throws MyException {
+    public Connection getMyConn(String tns, String user, String pwd) throws MyException{
         // System.out.println("get in getMyConn");
         Connection myConn = null;
         if (myConn != null) {
             System.out.println("return connection");
             return myConn;
         }
-
-
         Properties props = new Properties();
 
         try {

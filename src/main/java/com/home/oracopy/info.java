@@ -20,7 +20,7 @@ public class info {
         System.out.println(" -table <TABLE_NAME> \\  ");
         System.out.println(" [ -key_val <FILE_TAG> ] \\ ");
         System.out.println(" [ -key_field <FILE_TAG_FIELD> ]");
-        System.out.println(" -a <upload|create_upload_txt|download|ls|cleanup> \\ ");
+        System.out.println(" -a <upload|create_upload|download|ls|cleanup> \\ ");
         System.out.println(" [ -u <SCHEMA_NAME> ] ");
         System.out.println(" [ -p <SCHEMA_PWD> ] ");
         System.out.println(" [ -blob_field <BLOB_FILED> ]");

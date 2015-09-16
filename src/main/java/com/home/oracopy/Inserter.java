@@ -1,8 +1,10 @@
 package com.home.oracopy;
 
 
+import oracle.jdbc.OracleBlob;
 import oracle.jdbc.OracleResultSet;
 import oracle.sql.BLOB;
+
 
 import java.io.*;
 import java.sql.*;
@@ -103,10 +105,9 @@ public class Inserter {
             pstmt.setString(1, myParamHolder.file.getName());
             pstmt.setString(3, myParamHolder.keyFieldValue);
 
-            //BLOB myblob = null;
-          ////!  BLOB myblob = (BLOB) conn.createBlob();
-            BLOB myblob = BLOB.createTemporary(myParamHolder.conn, false, BLOB.DURATION_SESSION);
-            int bufSize = myblob.getBufferSize();
+
+            Blob myblob = myParamHolder.conn.createBlob();
+            int bufSize = 4 * 1024;//myblob.getBufferSize();
             OutputStream blobOutputStream = null;
             InputStream buffIn = null;
             FileInputStream     inputFileInputStream    = null;
