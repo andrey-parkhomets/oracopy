@@ -1,7 +1,6 @@
 package com.home.oracopy;
 
 
-import oracle.jdbc.OracleBlob;
 import oracle.jdbc.OracleResultSet;
 import oracle.sql.BLOB;
 
