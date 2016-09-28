@@ -4,18 +4,15 @@
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/main/resources" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/lib" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Maven: com.oracle:ojdbc6:11.2.0.3" level="project" />
-    <orderEntry type="library" name="Maven: com.phaos:ojpse:11.2.0.3" level="project" />
-    <orderEntry type="library" name="Maven: com.oracle:oraclepki:11.2.0.3" level="project" />
-    <orderEntry type="library" name="Maven: com.oracle:osdt_cert:11.2.0.3" level="project" />
-    <orderEntry type="library" name="Maven: com.oracle:osdt_core:11.2.0.3" level="project" />
+    <orderEntry type="library" exported="" name="Maven: com.oracle:ojdbc6:11.2.0.3" level="project" />
+    <orderEntry type="library" exported="" name="Maven: com.phaos:ojpse:11.2.0.3" level="project" />
+    <orderEntry type="library" exported="" name="Maven: com.oracle:oraclepki:11.2.0.3" level="project" />
+    <orderEntry type="library" exported="" name="Maven: com.oracle:osdt_cert:11.2.0.3" level="project" />
+    <orderEntry type="library" exported="" name="Maven: com.oracle:osdt_core:11.2.0.3" level="project" />
   </component>
 </module>
